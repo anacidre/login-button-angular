@@ -1,21 +1,14 @@
 import { BrowserModule } from "@angular/platform-browser";
-import { NgModule, Injector } from "@angular/core";
+import { NgModule } from "@angular/core";
 
+import { AppComponent } from "./app.component";
 import { LoginButtonComponent } from "./login-button/login-button.component";
 import { RouterModule } from "@angular/router";
-import { createCustomElement } from "@angular/elements";
 
 @NgModule({
-  declarations: [LoginButtonComponent],
+  declarations: [AppComponent, LoginButtonComponent],
   imports: [BrowserModule, RouterModule.forRoot([])],
-  entryComponents: [LoginButtonComponent],
+  providers: [],
+  bootstrap: [AppComponent],
 })
-export class AppModule {
-  constructor(private injector: Injector) {}
-  ngDoBootstrap() {
-    const loginButton = createCustomElement(LoginButtonComponent, {
-      injector: this.injector,
-    }) as any;
-    customElements.define("login-button", loginButton);
-  }
-}
+export class AppModule {}

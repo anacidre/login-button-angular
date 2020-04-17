@@ -14,8 +14,8 @@ import { tap, catchError, concatMap, shareReplay } from "rxjs/operators";
 import { Router } from "@angular/router";
 
 export interface Credentials {
-  domain: "string";
-  clientId: "string";
+  domain: string;
+  clientid: string;
 }
 
 @Injectable({
@@ -29,7 +29,7 @@ export class AuthService {
       from(
         createAuth0Client({
           domain: this.credentials.domain,
-          client_id: this.credentials.clientId,
+          client_id: this.credentials.clientid,
           redirect_uri: `${window.location.origin}`,
         })
       ) as Observable<Auth0Client>
@@ -136,7 +136,7 @@ export class AuthService {
     this.auth0Client$.subscribe((client: Auth0Client) => {
       // Call method to log out
       client.logout({
-        client_id: this.credentials.clientId,
+        client_id: this.credentials.clientid,
         returnTo: `${window.location.origin}`,
       });
     });

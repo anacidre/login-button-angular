@@ -1,4 +1,11 @@
-import { Component, OnInit, Input, ViewEncapsulation } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  Input,
+  ViewEncapsulation,
+  OnChanges,
+  SimpleChanges,
+} from "@angular/core";
 import { AuthService, Credentials } from "../auth.service";
 
 @Component({
@@ -8,12 +15,28 @@ import { AuthService, Credentials } from "../auth.service";
   encapsulation: ViewEncapsulation.ShadowDom,
 })
 export class LoginButtonComponent implements OnInit {
-  @Input() set credentials(credentials: Credentials) {
-    if (credentials) {
-      this.auth.init(credentials);
-    }
-  }
+  public credential: Credentials;
+
+  @Input() domain: string;
+  @Input() clientid: string;
+
   constructor(public auth: AuthService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    if (this.domain && this.clientid) {
+      this.auth.init({
+        domain: this.domain,
+        clientid: this.clientid,
+      });
+    }
+  }
+
+  ngOnChange() {
+    if (this.domain && this.clientid) {
+      this.auth.init({
+        domain: this.domain,
+        clientid: this.clientid,
+      });
+    }
+  }
 }
