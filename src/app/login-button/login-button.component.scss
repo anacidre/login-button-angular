@@ -1,0 +1,13 @@
+button {
+  background-color: var(--login-button-background, #eb5424);
+  color: var(--login-button-color, #ffffff);
+  font-family: var(--login-button-font-family, sans-serif);
+  font-size: var(--login-button-font-size, 18px);
+  line-height: var(--login-button-line-height, 32px);
+  border-radius: var(--login-button-border-radius, 5px);
+  text-transform: uppercase;
+  border: var(--login-button-border, 1px solid #eb5424);
+  margin: 5px 16px;
+  padding: 10px 30px;
+  text-decoration-line: none;
+}
