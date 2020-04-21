@@ -31,11 +31,11 @@ export class LoginButtonComponent implements OnInit {
     }
   }
 
-  ngOnChange() {
-    if (this.domain && this.clientid) {
+  ngOnChange(changes: SimpleChanges) {
+    if (changes.domain.currentValue && changes.clientid.currentValue) {
       this.auth.init({
-        domain: this.domain,
-        clientid: this.clientid,
+        domain: changes.domain.currentValue,
+        clientid: changes.clientid.currentValue,
       });
     }
   }
